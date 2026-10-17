@@ -1,0 +1,78 @@
+
+enable
+configure terminal
+
+hostname SOHO-SW1
+no ip domain-lookup
+
+! =====================================
+! CREATE DEPARTMENT VLANs
+! =====================================
+
+vlan 10
+ name ADMIN_IT
+ exit
+
+vlan 20
+ name FINANCE_HR
+ exit
+
+vlan 30
+ name CUSTOMER_SERVICE
+ exit
+
+! =====================================
+! ROUTER UPLINK: 802.1Q TRUNK
+! =====================================
+
+interface FastEthernet0/1
+ description TRUNK_TO_SOHO_R1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+ no shutdown
+ exit
+
+! =====================================
+! ADMIN / IT ACCESS PORTS
+! Example: Fa0/2 through Fa0/6
+! Change to match actual device connections
+! =====================================
+
+interface range FastEthernet0/2-6
+ description ADMIN_IT_DEVICES
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ no shutdown
+ exit
+
+! =====================================
+! FINANCE / HR ACCESS PORTS
+! Example: Fa0/7 through Fa0/12
+! Change to match actual device connections
+! =====================================
+
+interface range FastEthernet0/7-12
+ description FINANCE_HR_DEVICES
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ no shutdown
+ exit
+
+! =====================================
+! CUSTOMER SERVICE ACCESS PORTS
+! Example: Fa0/13 through Fa0/18
+! Change to match actual device connections
+! =====================================
+
+interface range FastEthernet0/13-18
+ description CUSTOMER_SERVICE_DEVICES
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ no shutdown
+ exit
+
+end
+copy running-config startup-config
