@@ -48,6 +48,7 @@ Topology documentation will be added in `01-topology/`.
 ## Project Status
 
 Stage 00: Initial repository structure created.
+Stage 01: Network topology and addressing plan documented
 
 ## Disclaimer
 
