@@ -1,0 +1,20 @@
+
+# VS Code workspace settings
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary and backup files
+*.tmp
+*.bak
+*~
+
+# Logs
+*.log
+
+# Credentials and local secrets
+.env
+.env.*
+!.env.example
